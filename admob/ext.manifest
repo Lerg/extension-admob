@@ -1,0 +1,16 @@
+name: "admob"
+
+platforms:
+    arm64-ios:
+        context:
+            frameworks: ["AdSupport", "AVFoundation", "AVKit", "AudioToolbox", "CFNetwork", "CoreData", "CoreGraphics", "CoreLocation", "CoreMedia", "CoreMotion", "CoreTelephony", "EventKit", "EventKitUI", "Foundation", "GLKit", "ImageIO", "JavaScriptCore", "MapKit", "MediaPlayer", "MediaToolbox", "MessageUI", "MobileCoreServices", "PassKit", "QuartzCore", "SafariServices", "Security", "Social", "StoreKit", "SystemConfiguration", "Twitter", "UIKit", "WebKit"]
+            flags:      ["-stdlib=libc++"]
+            linkFlags:  ["-ObjC"]
+            libs:       ["z", "c++", "sqlite3", "xml2"]
+
+    armv7-ios:
+        context:
+            frameworks: ["AdSupport", "AVFoundation", "AVKit", "AudioToolbox", "CFNetwork", "CoreData", "CoreGraphics", "CoreLocation", "CoreMedia", "CoreMotion", "CoreTelephony", "EventKit", "EventKitUI", "Foundation", "GLKit", "ImageIO", "JavaScriptCore", "MapKit", "MediaPlayer", "MediaToolbox", "MessageUI", "MobileCoreServices", "PassKit", "QuartzCore", "SafariServices", "Security", "Social", "StoreKit", "SystemConfiguration", "Twitter", "UIKit", "WebKit"]
+            flags:      ["-stdlib=libc++"]
+            linkFlags:  ["-ObjC"]
+            libs:       ["z", "c++", "sqlite3", "xml2"]

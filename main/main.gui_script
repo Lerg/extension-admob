@@ -1,0 +1,179 @@
+-- Logging helpers.
+local pretty_print = require('main.pretty_print')
+local function lines(str)
+	local t = {}
+	local function helper(line) table.insert(t, line) return '' end
+	helper((str:gsub('(.-)\n', helper)))
+	return t
+end
+local logs_lines = {}
+local function log(text)
+	local text_lines = lines(text)
+	for i = 1, #text_lines do
+		table.insert(logs_lines, text_lines[i])
+		if #logs_lines > 62 then
+			table.remove(logs_lines, 1)
+		end
+	end
+end
+local function log_flush()
+	gui.set_text(gui.get_node('logs_label'), table.concat(logs_lines, '\n'))
+end
+local function plog(t)
+	log(pretty_print(t))
+end
+
+-- Button handlers.
+
+local function init_pressed(self)
+	log('init_pressed')
+
+	-- Admob events handler.
+	local function listener(event)
+		log('admob listener')
+		plog(event)
+		if event.phase == 'init' then -- Admob has been initialized, now it's safe to load a banner.
+			admob.load{
+				type = 'banner',
+				id = '',
+				size = 'smart',
+				position = 'bottom',
+				keywords = {'puzzle', 'game'}
+			}
+		end
+	end
+	
+	local app_id = {
+		['iPhone OS'] = 'ca-app-pub-3940256099942544~1458002511',
+		Android = 'ca-app-pub-3940256099942544~3347511713'
+	}
+	
+	local sysinfo = sys.get_sys_info()
+
+	-- Init Admob with your app id.
+	admob.init{
+		app_id = app_id[sysinfo.system_name],
+		test = true, -- ALWAYS use test ads, only disable when submitting to the stores.
+		listener = listener
+	}
+end
+
+-- Load.
+
+local function load_interstitial_pressed(self)
+	log('load_interstitial_pressed')
+	admob.load{
+		type = 'interstitial',
+		id = '',
+		immersive = true,
+		keywords = {'puzzle', 'game'}
+	}
+end
+
+local function load_rewarded_video_pressed(self)
+	log('load_rewarded_video_pressed')
+	admob.load{
+		type = 'rewarded',
+		id = '',
+		immersive = true,
+		keywords = {'puzzle', 'game'}
+	}
+end
+
+-- Show.
+
+local function show_interstitial_pressed(self)
+	log('show_interstitial_pressed')
+	admob.show('interstitial')
+end
+
+
+local function show_rewarded_video_pressed(self)
+	log('show_rewarded_video_pressed')
+	admob.show('rewarded')
+end
+
+-- Is loaded?
+
+local function is_interstitial_loaded_pressed(self)
+	log('is_interstitial_loaded_pressed')
+	log('Is interstitial loaded? ' .. (admob.is_loaded('interstitial') and 'Yes' or 'No'))
+end
+
+local function is_rewarded_loaded_pressed(self)
+	log('is_rewarded_loaded_pressed')
+	log('Is rewarded loaded? ' .. (admob.is_loaded('rewarded') and 'Yes' or 'No'))
+end
+
+-- Banner.
+
+local function load_banner_pressed(self)
+	log('load_banner_pressed')
+	admob.load{
+		type = 'banner',
+		id = '',
+		size = 'banner',
+		position = 'bottom',
+		keywords = {'puzzle', 'game'}
+	}
+end
+
+local function hide_banner_pressed(self)
+	log('hide_banner_pressed')
+	admob.hide_banner()
+end
+
+-- Show/hide logs view.
+
+local function logs_pressed(self)
+	gui.set_enabled(gui.get_node('logs'), not gui.is_enabled(gui.get_node('logs')))
+end
+
+-- GUI init.
+function init(self)
+	msg.post('.', 'acquire_input_focus')    
+	msg.post('@render:', 'clear_color', {color = vmath.vector4(1.0, 1.0, 1.0, 1.0)})
+	gui.set_enabled(gui.get_node('logs'), false)
+end
+
+-- Update logs view.
+local frame = 0
+function update(self, dt)
+	frame = frame + 1
+	if frame == 30 then
+		log_flush()
+		frame = 0
+	end
+end
+
+-- Check if a button is clicked.
+local function button_click(self, action, node_name, callback)
+	if gui.pick_node(gui.get_node(node_name), action.x, action.y) then
+		if action.pressed then
+			gui.set_scale(gui.get_node(node_name), vmath.vector3(1.02, 1.02, 1.02))
+		elseif action.released then
+			gui.set_scale(gui.get_node(node_name), vmath.vector3(1, 1, 1))
+			callback(self)
+		end
+	end
+end
+
+local buttons = {
+	btn_init = init_pressed,
+	btn_load_interstitial = load_interstitial_pressed,
+	btn_load_rewarded_video = load_rewarded_video_pressed,
+	btn_show_interstitial = show_interstitial_pressed,
+	btn_show_rewarded_video = show_rewarded_video_pressed,
+	btn_is_interstitial_loaded = is_interstitial_loaded_pressed,
+	btn_is_rewarded_loaded = is_rewarded_loaded_pressed,
+	btn_load_banner = load_banner_pressed,
+	btn_hide_banner = hide_banner_pressed,
+	btn_logs = logs_pressed
+}
+function on_input(self, action_id, action)
+	if action_id == hash('touch') then
+		for button, callback in pairs(buttons) do
+			button_click(self, action, button, callback)
+		end
+	end
+end
