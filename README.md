@@ -26,14 +26,14 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 To use this extension, open `game.project` and add an entry into the `dependencies` property: `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
 
-Then select `Project -&gt; Fetch Libraries` to download the extension in your project.
+Then select `Project -> Fetch Libraries` to download the extension in your project.
 
 `AndroidManifest.xml` has to be modified for full Android support. You can use the provided manifest file.
-Again, open `game.project` and scroll down to `android -&gt; Manifest` option, select or paste path for the manifest file from the extension: `admob/AndroidManifest.xml`.
+Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `admob/AndroidManifest.xml`.
 
 Another file - `game.appmanifest` has to be added to the `game.project` file to tell Defold not to bundle it's own Google Play Services and Support libraries. This extension provides updated versions of these libraries.
 
-Scroll down to `native_extension -&gt; App Manifest` and select `/admob/game.appmanifest`.
+Scroll down to `native_extension -> App Manifest` and select `/admob/game.appmanifest`.
 
 ## Test Ads
 
