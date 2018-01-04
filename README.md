@@ -24,9 +24,15 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 ## Project Settings
 
-To use this extension, open `game.project` and add an entry into the `dependencies` property: `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
+> To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
+> 
+> Then select `Project -> Fetch Libraries` to download the extension in your project.
 
-Then select `Project -> Fetch Libraries` to download the extension in your project.
+### Android Resources bug
+
+>**Oops**, turns out there is a bug in Defold preventing the extension from building for Android when used as a remote dependency. Resources don’t get bundled.
+>
+> As a workaround please download the extension from github https://github.com/Lerg/extension-admob/archive/master.zip and copy the admob directory into your project. And the extension has to be removed from the `dependencies` list if added already in game.project.
 
 `AndroidManifest.xml` has to be modified for full Android support. You can use the provided manifest file. [Download it](https://raw.githubusercontent.com/Lerg/extension-admob/master/AndroidManifest.xml) and put it into your project directory.
 Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `/AndroidManifest.xml`.
