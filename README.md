@@ -29,7 +29,7 @@ To use this extension, open `game.project` and add an entry into the `dependenci
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
 `AndroidManifest.xml` has to be modified for full Android support. You can use the provided manifest file.
-Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `admob/AndroidManifest.xml`.
+Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `/admob/AndroidManifest.xml`.
 
 Another file - `game.appmanifest` has to be added to the `game.project` file to tell Defold not to bundle it's own Google Play Services and Support libraries. This extension provides updated versions of these libraries.
 
