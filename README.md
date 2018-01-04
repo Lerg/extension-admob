@@ -49,7 +49,7 @@ If you just to want to test the extension, you can download it from github and u
 
 Use [admob.init()](http://docs.spiralcodestudio.com/extension/admob/init) to initialize it when your app starts. A good place for that would be the `init()` function of some root game object. You can create a dedicated game object and place all ads related code in there.
 
-Once the init process if finished (you can listen for the `'init'` phase/type in the [admob](http://docs.spiralcodestudio.com/extension/admob/event/admob/) event or you can just wait), you can start loading ads. It's good to preload ads before you actually need to display it. Use [admob.load()](/extension/admob/load) to load and [admob.show()](http://docs.spiralcodestudio.com/extension/admob/show) to show the ads.
+Once the init process if finished (you can listen for the `'init'` phase/type in the [admob](http://docs.spiralcodestudio.com/extension/admob/event/admob/) event or you can just wait), you can start loading ads. It's good to preload ads before you actually need to display it. Use [admob.load()](http://docs.spiralcodestudio.com/extension/admob/load) to load and [admob.show()](http://docs.spiralcodestudio.com/extension/admob/show) to show the ads.
 
 When an ad has been closed (phase equals `'closed'`) you can preload next ad.
 
