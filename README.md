@@ -28,12 +28,12 @@ To use this extension, open `game.project` and add an entry into the `dependenci
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
-`AndroidManifest.xml` has to be modified for full Android support. You can use the provided manifest file.
-Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `/admob/AndroidManifest.xml`.
+`AndroidManifest.xml` has to be modified for full Android support. You can use the provided manifest file. [Download it](https://raw.githubusercontent.com/Lerg/extension-admob/master/AndroidManifest.xml) and put it into your project directory.
+Again, open `game.project` and scroll down to `android -> Manifest` option, select or paste path for the manifest file from the extension: `/AndroidManifest.xml`.
 
 Another file - `game.appmanifest` has to be added to the `game.project` file to tell Defold not to bundle it's own Google Play Services and Support libraries. This extension provides updated versions of these libraries.
 
-Scroll down to `native_extension -> App Manifest` and select `/admob/game.appmanifest`.
+Again, [download it](https://raw.githubusercontent.com/Lerg/extension-admob/master/game.appmanifest) and put it into your project directory. Scroll down to `native_extension -> App Manifest` and select `/game.appmanifest`.
 
 ## Test Ads
 
