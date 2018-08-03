@@ -8,12 +8,13 @@
 static jobject lua_loader_object = NULL;
 static jmethodID lua_loader_update = NULL;
 static jobject lua_state_object = NULL;
+static jmethodID lua_state_close = NULL;
 
-dmExtension::Result APP_INITIALIZE(dmExtension::AppParams* params) {
+dmExtension::Result APP_INITIALIZE(dmExtension::AppParams *params) {
 	return dmExtension::RESULT_OK;
 }
 
-dmExtension::Result APP_FINALIZE(dmExtension::AppParams* params) {
+dmExtension::Result APP_FINALIZE(dmExtension::AppParams *params) {
 	// Mention JNLua exports so they don't get optimized away.
 	if (params == NULL) {
 		Java_com_naef_jnlua_LuaState_lua_1version(NULL, NULL);

@@ -32,32 +32,40 @@
 namespace {
 	// JNI access is only valid on an attached thread.
 	struct ThreadAttacher {
-		JNIEnv* env;
-		ThreadAttacher() {
-			dmGraphics::GetNativeAndroidJavaVM()->AttachCurrentThread(&env, NULL);
+		JNIEnv *env;
+		bool has_attached;
+		ThreadAttacher() : env(NULL), has_attached(false) {
+			if (dmGraphics::GetNativeAndroidJavaVM()->GetEnv((void **)&env, JNI_VERSION_1_6) != JNI_OK) {
+				dmGraphics::GetNativeAndroidJavaVM()->AttachCurrentThread(&env, NULL);
+				has_attached = true;
+			}
 		}
 		~ThreadAttacher() {
-			env->ExceptionCheck();
-			env->ExceptionClear();
-			dmGraphics::GetNativeAndroidJavaVM()->DetachCurrentThread();
+			if (has_attached) {
+				if (env->ExceptionCheck()) {
+					env->ExceptionDescribe();
+				}
+				env->ExceptionClear();
+				dmGraphics::GetNativeAndroidJavaVM()->DetachCurrentThread();
+			}
 		}
 	};
 
 	// Dynamic Java class loading.
 	struct ClassLoader {
 		private:
-			JNIEnv* env;
+			JNIEnv *env;
 			jobject class_loader_object;
 			jmethodID load_class;
 		public:
-			ClassLoader(JNIEnv* env) : env(env) {
+			ClassLoader(JNIEnv *env) : env(env) {
 				jclass activity_class = env->FindClass("android/app/NativeActivity");
 				jclass class_loader_class = env->FindClass("java/lang/ClassLoader");
 				jmethodID get_class_loader = env->GetMethodID(activity_class, "getClassLoader", "()Ljava/lang/ClassLoader;");
 				load_class = env->GetMethodID(class_loader_class, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
 				class_loader_object = env->CallObjectMethod(dmGraphics::GetNativeAndroidActivity(), get_class_loader);
 			}
-			jclass load(const char* class_name) {
+			jclass load(const char *class_name) {
 				jstring class_name_string = env->NewStringUTF(class_name);
 				jclass loaded_class = (jclass)env->CallObjectMethod(class_loader_object, load_class, class_name_string);
 				env->DeleteLocalRef(class_name_string);
