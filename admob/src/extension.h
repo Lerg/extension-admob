@@ -1,13 +1,15 @@
 #ifndef extension_h
 #define extension_h
 
-// The name of the extension affects C++/ObjC exported symbols, Lua module name and Java package name.
+// The name of the extension affects Lua module name and Java package name.
 #define EXTENSION_NAME admob
 
 // Convert extension name to C const string.
 #define STRINGIFY(s) #s
 #define STRINGIFY_EXPANDED(s) STRINGIFY(s)
 #define EXTENSION_NAME_STRING STRINGIFY_EXPANDED(EXTENSION_NAME)
+
+#include <dmsdk/sdk.h>
 
 // Each extension must have unique exported symbols. Construct function names based on the extension name.
 #define FUNCTION_NAME(extension_name, function_name) Extension_ ## extension_name ## _ ## function_name
@@ -19,13 +21,38 @@
 #define UPDATE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, Update)
 #define FINALIZE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, Finalize)
 
-#define DECLARE_DEFOLD_EXTENSION DM_DECLARE_EXTENSION(EXTENSION_NAME, EXTENSION_NAME_STRING, APP_INITIALIZE, APP_FINALIZE, INITIALIZE, UPDATE, 0, FINALIZE)
+// The following functions are implemented for each platform.
+// Lua API.
+#define EXTENSION_ENABLE_DEBUG FUNCTION_NAME_EXPANDED(EXTENSION_NAME, enable_debug)
+int EXTENSION_ENABLE_DEBUG(lua_State *L);
 
-#define APP_INITIALIZE_IOS FUNCTION_NAME_EXPANDED(EXTENSION_NAME, AppInitialize_iOS)
-#define APP_FINALIZE_IOS FUNCTION_NAME_EXPANDED(EXTENSION_NAME, AppFinalize_iOS)
-#define INITIALIZE_IOS FUNCTION_NAME_EXPANDED(EXTENSION_NAME, Initialize_iOS)
-#define UPDATE_IOS FUNCTION_NAME_EXPANDED(EXTENSION_NAME, Update_iOS)
-#define FINALIZE_IOS FUNCTION_NAME_EXPANDED(EXTENSION_NAME, Finalize_iOS)
+#define EXTENSION_INIT FUNCTION_NAME_EXPANDED(EXTENSION_NAME, init)
+int EXTENSION_INIT(lua_State *L);
+
+#define EXTENSION_LOAD FUNCTION_NAME_EXPANDED(EXTENSION_NAME, load)
+int EXTENSION_LOAD(lua_State *L);
+
+#define EXTENSION_IS_LOADED FUNCTION_NAME_EXPANDED(EXTENSION_NAME, is_loaded)
+int EXTENSION_IS_LOADED(lua_State *L);
+
+#define EXTENSION_SHOW FUNCTION_NAME_EXPANDED(EXTENSION_NAME, show)
+int EXTENSION_SHOW(lua_State *L);
+
+#define EXTENSION_HIDE_BANNER FUNCTION_NAME_EXPANDED(EXTENSION_NAME, hide_banner)
+int EXTENSION_HIDE_BANNER(lua_State *L);
+
+// Extension lifecycle functions.
+#define EXTENSION_INITIALIZE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, initialize)
+#define EXTENSION_UPDATE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, update)
+#define EXTENSION_ON_EVENT FUNCTION_NAME_EXPANDED(EXTENSION_NAME, on_event)
+#define EXTENSION_APP_ACTIVATE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, app_activate)
+#define EXTENSION_APP_DEACTIVATE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, app_deactivate)
+#define EXTENSION_FINALIZE FUNCTION_NAME_EXPANDED(EXTENSION_NAME, finalize)
+void EXTENSION_INITIALIZE(lua_State *L);
+void EXTENSION_UPDATE(lua_State *L);
+void EXTENSION_APP_ACTIVATE(lua_State *L);
+void EXTENSION_APP_DEACTIVATE(lua_State *L);
+void EXTENSION_FINALIZE(lua_State *L);
 
 #if defined(DM_PLATFORM_ANDROID)
 

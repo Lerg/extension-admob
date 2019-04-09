@@ -1,47 +1,51 @@
-#ifndef DM_PLATFORM_ANDROID
-#ifndef DM_PLATFORM_IOS
+#if !defined(DM_PLATFORM_IOS) && !defined(DM_PLATFORM_ANDROID)
 
 #include <dmsdk/sdk.h>
 #include "extension.h"
 
-static int stub(lua_State *L) {
-	dmLogInfo(EXTENSION_NAME_STRING " extenstion is not supported on this platform.");
+int EXTENSION_ENABLE_DEBUG(lua_State *L) {
+	dmLogInfo("enable_debug");
 	return 0;
 }
 
-dmExtension::Result APP_INITIALIZE(dmExtension::AppParams* params) {
-	return dmExtension::RESULT_OK;
+int EXTENSION_INIT(lua_State *L) {
+	dmLogInfo("init");
+	return 0;
 }
 
-dmExtension::Result APP_FINALIZE(dmExtension::AppParams* params) {
-	return dmExtension::RESULT_OK;
+int EXTENSION_LOAD(lua_State *L) {
+	dmLogInfo("load");
+	return 0;
 }
 
-dmExtension::Result INITIALIZE(dmExtension::Params* params) {
-	const luaL_Reg lua_functions[] = {
-		{"enable_debug", stub},
-		{"init", stub},
-		{"is_loaded", stub},
-		{"load", stub},
-		{"show", stub},
-		{"show_banner", stub},
-		{"hide_banner", stub},
-		{NULL, NULL}
-	};
-
-	luaL_openlib(params->m_L, EXTENSION_NAME_STRING, lua_functions, 1);
-	return dmExtension::RESULT_OK;
+int EXTENSION_IS_LOADED(lua_State *L) {
+	dmLogInfo("is_loaded");
+	return 0;
 }
 
-dmExtension::Result UPDATE(dmExtension::Params* params) {
-	return dmExtension::RESULT_OK;
+int EXTENSION_SHOW(lua_State *L) {
+	dmLogInfo("show");
+	return 0;
 }
 
-dmExtension::Result FINALIZE(dmExtension::Params* params) {
-	return dmExtension::RESULT_OK;
+int EXTENSION_HIDE_BANNER(lua_State *L) {
+	dmLogInfo("hide_banner");
+	return 0;
 }
 
-DECLARE_DEFOLD_EXTENSION
+void EXTENSION_INITIALIZE(lua_State *L) {
+}
 
-#endif
+void EXTENSION_UPDATE(lua_State *L) {
+}
+
+void EXTENSION_APP_ACTIVATE(lua_State *L) {
+}
+
+void EXTENSION_APP_DEACTIVATE(lua_State *L) {
+}
+
+void EXTENSION_FINALIZE(lua_State *L) {
+}
+
 #endif

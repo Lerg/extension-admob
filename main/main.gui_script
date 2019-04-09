@@ -66,7 +66,8 @@ local function load_interstitial_pressed(self)
 		type = 'interstitial',
 		id = '',
 		immersive = true,
-		keywords = {'puzzle', 'game'}
+		keywords = {'puzzle', 'game'},
+		non_personalized = true
 	}
 end
 
