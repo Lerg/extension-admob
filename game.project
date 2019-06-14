@@ -27,7 +27,6 @@ app_icon_72x72 = /main/images/icon/72.png
 app_icon_96x96 = /main/images/icon/96.png
 app_icon_144x144 = /main/images/icon/144.png
 app_icon_192x192 = /main/images/icon/192.png
-manifest = /AndroidManifest.xml
 
 [ios]
 bundle_identifier = com.spiralcodestudio.test1
@@ -40,11 +39,10 @@ app_icon_114x114 = /main/images/icon/114.png
 app_icon_72x72 = /main/images/icon/72.png
 app_icon_144x144 = /main/images/icon/144.png
 app_icon_167x167 = /main/images/icon/167.png
-infoplist = /Info.plist
 
 [library]
 include_dirs = admob
 
 [native_extension]
-app_manifest = /game.appmanifest
+app_manifest = /admob/ext.appmanifest
 

@@ -24,9 +24,11 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 ## Project Settings
 
-> To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
-> 
-> Then select `Project -> Fetch Libraries` to download the extension in your project.
+To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
+
+Then select `Project -> Fetch Libraries` to download the extension in your project.
+
+For android builds to work, you must exclude Defold's Google Play Services jars, to do so open `game.project` and set `App Manifest` under `native_extension` to `/admob/ext.appmanifest`.
 
 ## Test Ads
 
