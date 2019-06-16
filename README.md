@@ -28,7 +28,9 @@ To use this extension, open `game.project` and add an entry into the `dependenci
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
-For android builds to work, you must exclude Defold's Google Play Services jars, to do so open `game.project` and set `App Manifest` under `native_extension` to `/admob/ext.appmanifest`.
+For Android builds to work, you must exclude Defold's Google Play Services jars, to do so open `game.project` and set `App Manifest` under `native_extension` to `/admob/ext.appmanifest`.
+
+Also Google Play Services require minimum Android API level 14, while Defold by default uses level 9. To bump it up, copy `AndroidManifest.xml` from `builtins/manifests/android` to your project root. Select it in `game.project` and change `android:minSdkVersion="9"` to `android:minSdkVersion="14"` inside the manifest file.
 
 ## Test Ads
 
