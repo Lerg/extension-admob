@@ -21,3 +21,14 @@ platforms:
             flags:      ["-stdlib=libc++"]
             linkFlags:  ["-ObjC"]
             libs:       ["z", "c++", "sqlite3", "xml2"]
+
+    android:
+        bundle:
+            aaptExcludeResourceDirs: [
+                '.*(\/res\/com\.android\.support\.support-compat-27\.1\.1)',
+                '.*(\/res\/com\.android\.support\.support-core-ui-27\.1\.1)',
+                '.*(\/res\/com\.android\.support\.support-media-compat-27\.1\.1)',
+                '.*(\/res\/com\.google\.android\.gms\.play-services-base-16\.0\.1)',
+                '.*(\/res\/com\.google\.android\.gms\.play-services-basement-16\.0\.1)',
+                '.*(\/res\/com\.google\.android\.gms\.play-services-base-16\.0\.1)'
+            ]
