@@ -53,7 +53,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="com.defold.adtest" />
+                <category android:name="{{android.package}}" />
             </intent-filter>
         </receiver>
         <!-- Internal (not exported) receiver used by the app to start its own exported services without risk of being spoofed.
