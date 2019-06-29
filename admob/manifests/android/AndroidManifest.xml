@@ -41,7 +41,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.defold.adtest.firebaseinitprovider"
+            android:authorities="{{android.package}}.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
 
