@@ -44,6 +44,3 @@ app_icon_167x167 = /main/images/icon/167.png
 [library]
 include_dirs = admob
 
-[native_extension]
-app_manifest = /admob/ext.appmanifest
-
