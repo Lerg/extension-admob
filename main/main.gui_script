@@ -23,7 +23,25 @@ local function plog(t)
 	log(pretty_print(t))
 end
 
+-- List ids for all platforms.
+local admob_ids = {
+	['iPhone OS'] = {
+		app = 'ca-app-pub-***',
+		banner = 'ca-app-pub-***',
+		interstitial = 'ca-app-pub-***',
+		rewarded = 'ca-app-pub-***'
+	},
+	Android = {
+		app = 'ca-app-pub-***',
+		banner ='ca-app-pub-***',
+		interstitial = 'ca-app-pub-***',
+		rewarded = 'ca-app-pub-***'
+	}
+}
+
 local system_name = sys.get_sys_info().system_name
+-- Leave only current system ids
+admob_ids = admob_ids[system_name] or {}
 
 -- Button handlers.
 
@@ -35,13 +53,9 @@ local function init_pressed(self)
 		log('admob listener')
 		plog(event)
 		if event.phase == 'init' then -- Admob has been initialized, now it's safe to load a banner.
-			local ad_id = {
-				['iPhone OS'] = 'ca-app-pub-9391932761767084/8334846326',
-				Android = 'ca-app-pub-9391932761767084/3302011496'
-			}
 			admob.load{
 				type = 'banner',
-				id = ad_id[system_name],
+				id = admob_ids.banner,
 				size = 'smart',
 				position = 'bottom',
 				keywords = {'puzzle', 'game'}
@@ -49,14 +63,9 @@ local function init_pressed(self)
 		end
 	end
 	
-	local app_id = {
-		['iPhone OS'] = 'ca-app-pub-3940256099942544~1458002511',
-		Android = 'ca-app-pub-3940256099942544~3347511713'
-	}
-
 	-- Init Admob with your app id.
 	admob.init{
-		app_id = app_id[system_name],
+		app_id = admob_ids.app,
 		test = true, -- ALWAYS use test ads, only disable when submitting to the stores.
 		listener = listener
 	}
@@ -66,13 +75,9 @@ end
 
 local function load_interstitial_pressed(self)
 	log('load_interstitial_pressed')
-	local ad_id = {
-		['iPhone OS'] = 'ca-app-pub-9391932761767084/3491505763',
-		Android = 'ca-app-pub-9391932761767084/9813371535'
-	}
 	admob.load{
 		type = 'interstitial',
-		id = ad_id[system_name],
+		id = admob_ids.interstitial,
 		immersive = true,
 		keywords = {'puzzle', 'game'},
 		non_personalized = true
@@ -81,13 +86,9 @@ end
 
 local function load_rewarded_video_pressed(self)
 	log('load_rewarded_video_pressed')
-	local ad_id = {
-		['iPhone OS'] = 'ca-app-pub-3940256099942544~1458002511',
-		Android = 'ca-app-pub-9391932761767084/4421444052'
-	}
 	admob.load{
 		type = 'rewarded',
-		id = ad_id[system_name],
+		id = admob_ids.rewarded,
 		immersive = true,
 		keywords = {'puzzle', 'game'}
 	}
@@ -122,13 +123,9 @@ end
 
 local function load_banner_pressed(self)
 	log('load_banner_pressed')
-	local ad_id = {
-		['iPhone OS'] = 'ca-app-pub-9391932761767084/8334846326',
-		Android = 'ca-app-pub-9391932761767084/3302011496'
-	}
 	admob.load{
 		type = 'banner',
-		id = ad_id[system_name],
+		id = admob_ids.banner,
 		size = 'smart',
 		position = 'bottom',
 		keywords = {'puzzle', 'game'}
