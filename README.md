@@ -24,7 +24,9 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 ## Project Settings
 
-To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
+To use this extension, open `game.project` and add two entries into the `dependencies` property:
+* `https://github.com/Lerg/extension-admob/archive/master.zip`
+* `https://github.com/defold/extension-firebase-core/archive/master.zip`
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
