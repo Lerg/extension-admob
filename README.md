@@ -32,8 +32,6 @@ Then select `Project -> Fetch Libraries` to download the extension in your proje
 
 Previsouly `App Manifest` was required in `game.project` under `native_extension`. Now it's not needed and if you had it - please remove.
 
-In `game.project` set `Android -> Minimum Sdk Version` to 14.
-
 ## Test Ads
 
 ALWAYS use test ads during the development. Only switch to the real ads for submitting to the stores. To enable test ads use `test = true` option in the [admob.init()](http://docs.spiralcodestudio.com/extension/admob/init) call.
