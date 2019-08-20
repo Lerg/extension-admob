@@ -24,13 +24,11 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 ## Project Settings
 
-To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip`. Multiple items can be separated by a space character.
+To use this extension, open `game.project` and add an entry into the `dependencies` property:  `https://github.com/Lerg/extension-admob/archive/master.zip` and `https://github.com/defold/extension-firebase-core/archive/master.zip`.
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
 Previsouly `App Manifest` was required in `game.project` under `native_extension`. Now it's not needed and if you had it - please remove.
-
-In `game.project` set `Android -> Minimum Sdk Version` to 14.
 
 ## Test Ads
 
