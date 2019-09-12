@@ -1,7 +1,7 @@
 [project]
 title = Defold Admob
 version = 1
-dependencies = https://github.com/defold/extension-firebase-core/archive/master.zip
+dependencies = https://github.com/defold/extension-firebase-core/archive/master.zip,https://github.com/defold/extension-gps/archive/master.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
