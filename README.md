@@ -27,6 +27,7 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 To use this extension, open `game.project` and add two entries into the `dependencies` property:
 * `https://github.com/Lerg/extension-admob/archive/master.zip`
 * `https://github.com/defold/extension-firebase-core/archive/master.zip`
+* `https://github.com/defold/extension-gps/archive/master.zip` (starting Defold 1.2.162)
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
