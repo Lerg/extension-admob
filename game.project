@@ -40,6 +40,7 @@ app_icon_114x114 = /main/images/icon/114.png
 app_icon_72x72 = /main/images/icon/72.png
 app_icon_144x144 = /main/images/icon/144.png
 app_icon_167x167 = /main/images/icon/167.png
+infoplist = /Info.plist
 
 [library]
 include_dirs = admob
