@@ -31,14 +31,13 @@ To use this extension, open `game.project` and add two entries into the `depende
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
-For iOS Google now requires setting Admob App Id in the `Info.plist` file. To do so copy the default `Info.plist` file from the `builtins/manifests.ios/` directory into your project, set it in the `game.project` file under iOS -> Info.plist. And add these lines to the project's `Info.plist` file inside the top `dict` section:
-
+For iOS Google now requires setting Admob App Id in the `Info.plist` file. To do so open your `game.project` and add these lines:
 ```
-<key>GADApplicationIdentifier</key>
-<string>ca-app-pub-***~***</string>
+[admob]
+ios_app_id = ca-app-pub-***~***
 ```
 
-Replace `ca-app-pub-***~***` with your App Id.
+Replace `ca-app-pub-***~***` with your app id. It can now be viewed or changed in the normal view of the `game.project` file.
 
 ## Test Ads
 
