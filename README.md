@@ -26,18 +26,20 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 To use this extension, open `game.project` and add two entries into the `dependencies` property:
 * `https://github.com/Lerg/extension-admob/archive/master.zip`
-* `https://github.com/defold/extension-firebase-core/archive/master.zip`
-* `https://github.com/defold/extension-gps/archive/master.zip` (starting Defold 1.2.162)
+* `https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-base-16.0.1.zip`
+* `https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-ads-17.2.1.zip`
+* `https://github.com/defold/android-base-extensions/releases/download/1.0.0/support-v4-27.0.2.zip`
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
-For iOS Google now requires setting Admob App Id in the `Info.plist` file. To do so open your `game.project` and add these lines:
+You need to set the AdMob App Id for your iOS and/or Android app in `game.project`. To do so open your `game.project` and add these lines:
 ```
 [admob]
 ios_app_id = ca-app-pub-***~***
+android_app_id = ca-app-pub-***~***
 ```
 
-Replace `ca-app-pub-***~***` with your app id. It can now be viewed or changed in the normal view of the `game.project` file.
+Replace `ca-app-pub-***~***` with your app ids. It can now be viewed or changed in the normal view of the `game.project` file.
 
 ## Test Ads
 
