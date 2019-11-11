@@ -26,13 +26,11 @@ end
 -- List ids for all platforms.
 local admob_ids = {
 	['iPhone OS'] = {
-		app = 'ca-app-pub-***',
 		banner = 'ca-app-pub-***',
 		interstitial = 'ca-app-pub-***',
 		rewarded = 'ca-app-pub-***'
 	},
 	Android = {
-		app = 'ca-app-pub-***',
 		banner ='ca-app-pub-***',
 		interstitial = 'ca-app-pub-***',
 		rewarded = 'ca-app-pub-***'
@@ -63,9 +61,8 @@ local function init_pressed(self)
 		end
 	end
 	
-	-- Init Admob with your app id.
+	-- Init Admob.
 	admob.init{
-		app_id = admob_ids.app,
 		test = true, -- ALWAYS use test ads, only disable when submitting to the stores.
 		listener = listener
 	}
