@@ -1,7 +1,7 @@
 [project]
 title = Defold Admob
 version = 1
-dependencies = https://github.com/defold/extension-gps/archive/16.0.1.zip,https://github.com/defold/extension-supportv4/archive/27.0.2.zip,https://github.com/defold/extension-gps-ads/archive/17.2.1.zip
+dependencies = https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-base-16.0.1.zip,https://github.com/defold/android-base-extensions/releases/download/1.0.0/support-v4-27.0.2.zip,https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-ads-17.2.1.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
@@ -47,3 +47,4 @@ include_dirs = admob
 [admob]
 ios_app_id = ca-app-pub-***~***
 app_id = ca-app-pub-5987599954977844~3080144047
+
