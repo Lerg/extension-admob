@@ -24,11 +24,8 @@ Full documentation can be found here: http://docs.spiralcodestudio.com/extension
 
 ## Project Settings
 
-To use this extension, open `game.project` and add two entries into the `dependencies` property:
+To use this extension, open `game.project` and an entry to the `dependencies` property:
 * `https://github.com/Lerg/extension-admob/archive/master.zip`
-* `https://github.com/Lerg/android-base-extensions/releases/download/1.0.1/gps-ads-17.2.1.zip`
-* `https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-base-16.0.1.zip`
-* `https://github.com/defold/android-base-extensions/releases/download/1.0.0/support-v4-27.0.2.zip`
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
