@@ -13,13 +13,17 @@ extern NSString *_Nonnull const GADGoogleAdNetworkClassName;
 /// Ad network class name for custom event ads.
 extern NSString *_Nonnull const GADCustomEventAdNetworkClassName;
 
+/// Key into NSError.userInfo mapping to a GADResponseInfo object. When ads fail to load, errors
+/// returned contain an instance of GADResponseInfo.
+extern NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
+
 /// Information about a response to an ad request.
 @interface GADResponseInfo : NSObject
 
 /// Unique identifier of the ad response.
 @property(nonatomic, readonly, nullable) NSString *responseIdentifier;
 
-/// A class name that identifies the ad network that returned the ad.
-@property(nonatomic, readonly, nonnull) NSString *adNetworkClassName;
+/// A class name that identifies the ad network that returned the ad. Nil if no ad was returned.
+@property(nonatomic, readonly, nullable) NSString *adNetworkClassName;
 
 @end

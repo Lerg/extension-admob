@@ -1,7 +1,6 @@
 [project]
 title = Defold Admob
 version = 1
-dependencies = https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-base-17.1.0.zip,https://github.com/defold/android-base-extensions/releases/download/1.0.0/support-v4-27.0.2.zip,https://github.com/Lerg/android-base-extensions/releases/download/1.0.1/gps-ads-17.2.1.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
@@ -30,7 +29,6 @@ app_icon_144x144 = /main/images/icon/144.png
 app_icon_192x192 = /main/images/icon/192.png
 
 [ios]
-bundle_identifier = com.spiralcodestudio.test1
 app_icon_120x120 = /main/images/icon/120.png
 app_icon_180x180 = /main/images/icon/180.png
 app_icon_76x76 = /main/images/icon/76.png
@@ -40,6 +38,8 @@ app_icon_114x114 = /main/images/icon/114.png
 app_icon_72x72 = /main/images/icon/72.png
 app_icon_144x144 = /main/images/icon/144.png
 app_icon_167x167 = /main/images/icon/167.png
+launch_image_640x1136 = /launchscreens/640_1136.png
+launch_image_1125x2436 = /launchscreens/1125_2436.png
 
 [library]
 include_dirs = admob
