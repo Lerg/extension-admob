@@ -1,6 +1,7 @@
 [project]
 title = Defold Admob
 version = 1
+dependencies = https://build.spiralcodestudio.com/PATREON_EMAIL/ACCESS_KEY/defold/admob.zip,https://static.spiralcodestudio.com/defold/admob_dep.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
