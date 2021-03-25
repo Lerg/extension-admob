@@ -2,12 +2,6 @@
 
 The Admob extension lets you display banner, interstitial and rewarded ads.
 
-Full documentation can be found here: http://docs.spiralcodestudio.com/extension/admob
-
-## Impressions Share
-
-There is NO impression share or revenue share.
-
 # API Overview
 
 ## Functions
@@ -24,14 +18,10 @@ There is NO impression share or revenue share.
 
 # Project Settings
 
-To use this extension, you have to support me on Patreon with a 2nd or higher tier. You can become a patron here https://patreon.com/Lerg
+Open `game.project` and a new entry to the `dependencies` property:
 
-Once you become a patron, I will send you an access key. Open `game.project` and these two entries to the `dependencies` property:
+- `https://github.com/Lerg/extension-admob/archive/master.zip`
 
-- `https://build.spiralcodestudio.com/PATREON_EMAIL/ACCESS_KEY/defold/admob.zip`
-- `https://static.spiralcodestudio.com/defold/admob_dep.zip`
-
-Replace `PATREON_EMAIL` with your Patreon email and `ACCESS_KEY` with the key I send you. E.g. `https://build.spiralcodestudio.com/name@gmail.com/0123456789/defold/admob.zip`
 
 Then select `Project -> Fetch Libraries` to download the extension in your project.
 
@@ -342,3 +332,9 @@ Once the init process if finished (you can listen for the `'init'` phase/type in
 When an ad has been closed (phase equals `'closed'`) you can preload next ad.
 
 Banners are displayed automatically when loaded, no need to call [admob.show()](#function_show) for them, however to remove a banner, you would need to use [admob.hide_banner()](#function_hide_banner).
+
+--
+
+# Patreon
+
+If you like this extension please consider supporting me on Patreon https://patreon.com/Lerg
