@@ -1,3 +1,5 @@
+#if defined(DM_PLATFORM_IOS)
+
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import "AdmobUtils.h"
@@ -57,3 +59,5 @@
 }
 
 @end
+
+#endif
