@@ -379,12 +379,12 @@ static NSMutableArray *tasks = [[NSMutableArray alloc] init];
 }
 
 -(NSDictionary*)get_table:(NSString*)path default:(NSDictionary*)default_value {
-    NSDictionary *result = [self get_table:path];
-    if (result != nil) {
-        return result;
-    } else {
-        return default_value;
-    }
+	NSDictionary *result = [self get_table:path];
+	if (result != nil) {
+		return result;
+	} else {
+		return default_value;
+	}
 }
 
 -(NSDictionary*)get_table:(NSString*)path {
