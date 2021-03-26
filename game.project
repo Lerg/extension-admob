@@ -48,3 +48,6 @@ include_dirs = admob
 ios_app_id = ca-app-pub-3940256099942544~1458002511
 android_app_id = ca-app-pub-3940256099942544~3347511713
 
+[native_extension]
+app_manifest = /use_androidx.appmanifest
+
