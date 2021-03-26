@@ -50,7 +50,7 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 	if (is_initialized) {
 		return true;
 	} else {
-		[Utils log:@"the extension is not initialized."];
+		dmLogInfo("the extension is not initialized.");;
 		return false;
 	}
 }
@@ -66,10 +66,9 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 
 // admob.init(params)
 -(int)init_:(lua_State*)L {
-	[Utils debug_log:@"init()"];
 	[Utils check_arg_count:L count:1];
 	if (is_initialized) {
-		[Utils log:@"The extension is already initialized."];
+		dmLogInfo("The extension is already initialized.");;
 		return 0;
 	}
 
@@ -99,11 +98,10 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 
 // admob.load(type)
 -(int)load:(lua_State*)L {
-	[Utils debug_log:@"load"];
 	[Utils check_arg_count:L count:1];
 
 	if (!is_initialized) {
-		[Utils log:@"not initialized."];
+		dmLogInfo("not initialized.");;
 		return 0;
 	}
 
@@ -267,11 +265,10 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 
 // admob.is_loaded(type)
 -(int)is_loaded:(lua_State*)L {
-	[Utils debug_log:@"is_loaded"];
 	[Utils check_arg_count:L count:1];
 
 	if (!is_initialized) {
-		[Utils log:@"not initialized."];
+		dmLogInfo("not initialized.");;
 		return 0;
 	}
 
@@ -295,11 +292,10 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 
 // admob.show(type)
 -(int)show:(lua_State*)L {
-	[Utils debug_log:@"show"];
 	[Utils check_arg_count:L count:1];
 
 	if (!is_initialized) {
-		[Utils log:@"not initialized."];
+		dmLogInfo("not initialized.");;
 		return 0;
 	}
 
@@ -308,12 +304,8 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 	UIViewController *root = nil;
 
 	if (@available(iOS 13, *)) {
-		NSLog(@"size = %lu", (unsigned long)UIApplication.sharedApplication.windows.count);
 		root = UIApplication.sharedApplication.windows[0].rootViewController;
-
-		NSLog(@"key window %d %d", UIApplication.sharedApplication.windows[0].isHidden, UIApplication.sharedApplication.windows[0].isOpaque);
 		root.modalPresentationStyle = UIModalPresentationPopover;
-		//root = UIApplication.sharedApplication.keyWindow.rootViewController;
 	} else {
 		root = UIApplication.sharedApplication.keyWindow.rootViewController;
 	}
@@ -332,7 +324,6 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 
 // admob.hide_banner()
 -(int)hide_banner:(lua_State*)L {
-	[Utils debug_log:@"hide_banner()"];
 	[Utils check_arg_count:L count:0];
 	if (![self check_is_initialized]) return 0;
 	if (banner != nil) {
