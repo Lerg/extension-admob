@@ -39,22 +39,18 @@ abstract class AdmobUtils {
 	}
 
 	static AdSize stringToBannerSize(String value) {
-		switch (value) {
-			case "large":
-				return AdSize.LARGE_BANNER;
-			case "medium":
-				return AdSize.MEDIUM_RECTANGLE;
-			case "full":
-				return AdSize.FULL_BANNER;
-			case "leaderboard":
-				return AdSize.LEADERBOARD;
-			case "smart":
-			case "smart_portrait":
-			case "smart_landscape":
-				return AdSize.SMART_BANNER;
-			case "banner":
-			default:
-				return AdSize.BANNER;
+		if (value == "large") {
+			return AdSize.LARGE_BANNER;
+		} else if (value == "medium") {
+			return AdSize.MEDIUM_RECTANGLE;
+		} else if (value == "full") {
+			return AdSize.FULL_BANNER;
+		} else if (value == "leaderboard") {
+			return AdSize.LEADERBOARD;
+		} else if (value == "smart" || value == "smart_portrait" || value == "smart_landscape") {
+			return AdSize.SMART_BANNER;
+		} else {
+			return AdSize.BANNER;
 		}
 	}
 }

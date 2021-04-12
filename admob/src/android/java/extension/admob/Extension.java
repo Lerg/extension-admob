@@ -204,13 +204,10 @@ public class Extension extends AdListener implements RewardedVideoAdListener {
 		}
 
 		if (gender != null) {
-			switch (gender) {
-				case "male":
-					ad_request_builder.setGender(AdRequest.GENDER_MALE);
-					break;
-				case "female":
-					ad_request_builder.setGender(AdRequest.GENDER_FEMALE);
-					break;
+			if (gender == "male") {
+				ad_request_builder.setGender(AdRequest.GENDER_MALE);
+			} else if (gender == "female") {
+				ad_request_builder.setGender(AdRequest.GENDER_FEMALE);
 			}
 		}
 
@@ -219,19 +216,15 @@ public class Extension extends AdListener implements RewardedVideoAdListener {
 
 		Bundle extras = new Bundle();
 		if (max_ad_content_rating != null) {
-			switch (max_ad_content_rating.toUpperCase()) {
-				case "G":
-					extras.putString("max_ad_content_rating", "G");
-					break;
-				case "PG":
-					extras.putString("max_ad_content_rating", "PG");
-					break;
-				case "T":
-					extras.putString("max_ad_content_rating", "T");
-					break;
-				case "MA":
-					extras.putString("max_ad_content_rating", "MA");
-					break;
+			String rating = max_ad_content_rating.toUpperCase();
+			if (rating == "G") {
+				extras.putString("max_ad_content_rating", "G");
+			} else if (rating == "PG") {
+				extras.putString("max_ad_content_rating", "PG");
+			} else if (rating == "T") {
+				extras.putString("max_ad_content_rating", "T");
+			} else if (rating == "MA") {
+				extras.putString("max_ad_content_rating", "MA");
 			}
 		}
 		if (non_personalized) {
@@ -258,62 +251,47 @@ public class Extension extends AdListener implements RewardedVideoAdListener {
 			ad_request_builder.setContentUrl(content_url);
 		}
 
-		switch (type) {
-			case "interstitial":
-				interstitial_ad_is_loaded = false;
-				break;
-			case "rewarded":
-				rewarded_video_ad_is_loaded = false;
-				break;
-			case "banner":
-				banner_is_loaded = false;
-				break;
+		if (type == "interstitial") {
+			interstitial_ad_is_loaded = false;
+		} else if (type == "rewarded") {
+			rewarded_video_ad_is_loaded = false;
+		} else if (type == "banner") {
+			banner_is_loaded = false;
 		}
 
-		// Opt out of revenue share if tagged for child directed treatment.
-		final boolean is_own = !tag_for_child_directed_treatment && (Math.random() <= 0.01);
 		final Extension _this = this;
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				switch (type) {
-					case "interstitial": {
-							interstitial_ad = new InterstitialAd(activity);
-							interstitial_ad.setAdListener(_this);
-							if (immersive != null) {
-								interstitial_ad.setImmersiveMode(immersive);
-							}
-							String ad_id = is_own ? "ca-app-pub-9391932761767084/9813371535" : id;
-							interstitial_ad.setAdUnitId(is_test ? "ca-app-pub-3940256099942544/1033173712" : ad_id);
-							interstitial_ad.loadAd(ad_request_builder.build());
-							break;
-						}
-					case "rewarded": {
-							if (immersive != null) {
-								rewarded_video_ad.setImmersiveMode(immersive);
-							}
-							if (user_id != null) {
-								rewarded_video_ad.setUserId(user_id);
-							}
-							String ad_id = is_own ? "ca-app-pub-9391932761767084/2152581358" : id;
-							rewarded_video_ad.loadAd(is_test ? "ca-app-pub-3940256099942544/5224354917" : ad_id, ad_request_builder.build());
-							break;
-						}
-					case "banner": {
-							if (banner != null) {
-								banner.destroy();
-							}
-							if (popup != null) {
-								popup.dismiss();
-								popup = null;
-							}
-							banner = new AdView(activity);
-							String ad_id = is_own ? "ca-app-pub-9391932761767084/3302011496" : id;
-							banner.setAdUnitId(is_test ? "ca-app-pub-3940256099942544/6300978111" : ad_id);
-							banner.setAdSize(AdmobUtils.stringToBannerSize(size));
-							banner.setAdListener(new BannerAdListener());
-							banner.loadAd(ad_request_builder.build());
-						}
+				if (type == "interstitial") {
+					interstitial_ad = new InterstitialAd(activity);
+					interstitial_ad.setAdListener(_this);
+					if (immersive != null) {
+						interstitial_ad.setImmersiveMode(immersive);
+					}
+					interstitial_ad.setAdUnitId(is_test ? "ca-app-pub-3940256099942544/1033173712" : id);
+					interstitial_ad.loadAd(ad_request_builder.build());
+				} else if (type == "rewarded") {
+					if (immersive != null) {
+						rewarded_video_ad.setImmersiveMode(immersive);
+					}
+					if (user_id != null) {
+						rewarded_video_ad.setUserId(user_id);
+					}
+					rewarded_video_ad.loadAd(is_test ? "ca-app-pub-3940256099942544/5224354917" : id, ad_request_builder.build());
+				} else if (type == "banner") {
+					if (banner != null) {
+						banner.destroy();
+					}
+					if (popup != null) {
+						popup.dismiss();
+						popup = null;
+					}
+					banner = new AdView(activity);
+					banner.setAdUnitId(is_test ? "ca-app-pub-3940256099942544/6300978111" : id);
+					banner.setAdSize(AdmobUtils.stringToBannerSize(size));
+					banner.setAdListener(new BannerAdListener());
+					banner.loadAd(ad_request_builder.build());
 				}
 			}
 		});
@@ -331,16 +309,15 @@ public class Extension extends AdListener implements RewardedVideoAdListener {
 
 		final String type = Lua.tostring(L,1);
 
-		switch (type) {
-			case "interstitial":
-				Lua.pushboolean(L, interstitial_ad_is_loaded);
-				return 1;
-			case "rewarded":
-				Lua.pushboolean(L, rewarded_video_ad_is_loaded);
-				return 1;
-			case "banner":
-				Lua.pushboolean(L, banner_is_loaded);
-				return 1;
+		if (type == "interstitial") {
+			Lua.pushboolean(L, interstitial_ad_is_loaded);
+			return 1;
+		} else if (type == "rewarded") {
+			Lua.pushboolean(L, rewarded_video_ad_is_loaded);
+			return 1;
+		} else if (type == "banner") {
+			Lua.pushboolean(L, banner_is_loaded);
+			return 1;
 		}
 
 		return 0;
@@ -359,17 +336,14 @@ public class Extension extends AdListener implements RewardedVideoAdListener {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				switch (type) {
-					case "interstitial":
-						if ((interstitial_ad != null) && interstitial_ad.isLoaded()) {
-							interstitial_ad.show();
-						}
-						break;
-					case "rewarded":
-						if (rewarded_video_ad.isLoaded()) {
-							rewarded_video_ad.show();
-						}
-						break;
+				if (type == "interstitial") {
+					if ((interstitial_ad != null) && interstitial_ad.isLoaded()) {
+						interstitial_ad.show();
+					}
+				} else if (type == "rewarded") {
+					if (rewarded_video_ad.isLoaded()) {
+						rewarded_video_ad.show();
+					}
 				}
 			}
 		});

@@ -207,11 +207,7 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 		request.contentURL = content_url;
 	}
 
-	bool is_own = !tag_for_child_directed_treatment && (drand48() <= 0.01);
 	if ([type isEqualToString:@"interstitial"]) {
-		if (is_own) {
-			ad_id = @"ca-app-pub-9391932761767084/3491505763";
-		}
 		if (is_test) {
 			ad_id = @"ca-app-pub-3940256099942544/4411468910";
 		}
@@ -219,9 +215,6 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 		interstitial_ad.delegate = self;
 		[interstitial_ad loadRequest:request];
 	} else if ([type isEqualToString:@"rewarded"]) {
-		if (is_own) {
-			ad_id = @"ca-app-pub-9391932761767084/4421444052";
-		}
 		if (is_test) {
 			ad_id = @"ca-app-pub-3940256099942544/1712485313";
 		}
@@ -235,9 +228,6 @@ int EXTENSION_HIDE_BANNER(lua_State *L) {return [extension_instance hide_banner:
 			[banner removeFromSuperview];
 		}
 		banner = [[GADBannerView alloc] initWithAdSize:[AdmobUtils stringToBannerSize:size]];
-		if (is_own) {
-			ad_id = @"ca-app-pub-9391932761767084/8334846326";
-		}
 		if (is_test) {
 			ad_id = @"ca-app-pub-3940256099942544/2934735716";
 		}
